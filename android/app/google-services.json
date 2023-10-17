@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "979242077774",
+    "project_id": "pj-chit-app",
+    "storage_bucket": "pj-chit-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979242077774:android:d6bb9867a84c678ce87d1f",
+        "android_client_info": {
+          "package_name": "com.pjchit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "979242077774-3hplu6e1jvu6ep5t51jfbjgdv18kkh9d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pjchit",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "979242077774-q0hdbkukes7bfibba13418c0a8i9s5tf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pjchit",
+            "certificate_hash": "94dd7025eefafbf3f8cb2ed766455e6217d5748e"
+          }
+        },
+        {
+          "client_id": "979242077774-ci7fel1dp79hvimbobgm72rhadbvd3ml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoZQgYrs26Z6knUdDkP4hTStURHW-0UHE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "979242077774-ci7fel1dp79hvimbobgm72rhadbvd3ml.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

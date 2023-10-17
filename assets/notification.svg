@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="15.185" height="22" viewBox="0 0 15.185 22">
+  <g id="notification" transform="translate(-308 -55.215)">
+    <g id="notification-bell-svgrepo-com" transform="translate(228.685 55.215)">
+      <g id="Group_851" data-name="Group 851" transform="translate(79.316)">
+        <g id="Group_850" data-name="Group 850">
+          <path id="Path_2842" data-name="Path 2842" d="M94.351,15.615,92.4,12.852v-5.4a5.5,5.5,0,0,0-4.686-5.432V.8A.8.8,0,1,0,86.1.8V2.024a5.5,5.5,0,0,0-4.686,5.432v5.4l-1.952,2.762a.805.805,0,0,0,.657,1.269H93.694A.805.805,0,0,0,94.351,15.615Zm-12.675-.34,1.2-1.7a.8.8,0,0,0,.148-.465V7.456a3.881,3.881,0,0,1,7.763,0v5.652a.8.8,0,0,0,.148.465l1.2,1.7H81.676Z" transform="translate(-79.316)" fill="#ffeabf"/>
+          <path id="Path_2843" data-name="Path 2843" d="M205.43,406.313a2.271,2.271,0,1,0,2.271,2.271A2.273,2.273,0,0,0,205.43,406.313Zm0,2.931a.661.661,0,1,1,.661-.661A.662.662,0,0,1,205.43,409.244Z" transform="translate(-197.838 -388.854)" fill="#ffeabf"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

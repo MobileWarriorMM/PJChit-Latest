@@ -1,0 +1,17 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
+        <item name="colorAccent">#5c0232</item>
+        <item name="colorOnSecondary">#5c0232</item>
+        <item name="alertDialogTheme">@style/Theme.AppCompat.Light.NoActionBar</item>
+    </style>
+
+    <style name="DatePickerTheme" parent="DatePickerBaseTheme">
+        <item name="android:colorControlNormal">#5c0232</item>
+    </style>
+
+</resources>

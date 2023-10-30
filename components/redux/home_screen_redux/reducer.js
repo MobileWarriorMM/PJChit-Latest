@@ -15,7 +15,7 @@ const initialState = {
     newArraivalsListData: [],
     locationData: {},
     sliderListLoading: true,
-    mySchemeIsLoading: true,
+    mySchemeIsLoading: false,
 }
 
 const HomeScreenReducer = (state = initialState, action) => {

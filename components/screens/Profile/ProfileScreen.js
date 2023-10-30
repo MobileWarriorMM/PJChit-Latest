@@ -561,14 +561,16 @@ export default function ProfileScreen({ navigation }) {
                                             style={{ height: 90, width: 90, borderRadius: 100 }}
                                             source={{ uri: profileImgUrl }} //3029
                                         /> : <View style={{ height: 90, width: 90, borderRadius: 180, justifyContent: 'center' }}>
-                                            <Text
-                                                style={{
-                                                    color: 'black',
-                                                    fontSize: (height * 0.12 / 2) / fScale,
-                                                    alignSelf: 'center',
-                                                    fontFamily: FONTS.FONT_BOLD
-                                                }}
-                                            >{UserData?.cardName[0].toString().toUpperCase()}</Text>
+                                            {UserData?.cardName !== undefined?
+                                                <Text
+                                                    style={{
+                                                        color: 'black',
+                                                        fontSize: (height * 0.12 / 2) / fScale,
+                                                        alignSelf: 'center',
+                                                        fontFamily: FONTS.FONT_BOLD
+                                                    }}
+                                                >{UserData?.cardName[0].toString().toUpperCase()}</Text> : <></>
+                                            }
                                         </View>}
 
                                     {/* } */}

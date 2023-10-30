@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
     View, Text, StyleSheet, Dimensions, Image, TextInput,
-    TouchableHighlight, Keyboard, PermissionsAndroid, Modal, Pressable, ScrollView, ActivityIndicator
+    TouchableHighlight, Keyboard, PermissionsAndroid, Modal, Pressable, ScrollView, ActivityIndicator, Platform
 } from "react-native";
 import MaterialIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import KeyboardWraper from "../common_utils/KeyboardWraper";
@@ -23,6 +23,7 @@ import AntIcon from 'react-native-vector-icons/AntDesign'
 import AutoCompleteTextField from "../common_utils/AutoCompleteTextField";
 import { checkValidMail } from '../common_utils/ValidMailChecker'
 import AutoCompleteDropDown from "../common_utils/AutoCompleteDropDown";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 var height = Dimensions.get('window').height;
 var width = Dimensions.get('window').width;
@@ -950,6 +951,26 @@ export default function RegisterScreen({ navigation }) {
                     }
 
                 </View>
+
+                {Platform.OS === 'ios' ?
+                        <TouchableHighlight
+                            underlayColor={'#ddd'}
+                            style={{
+                                position: 'absolute',
+                                right: 20,
+                                top: 60,
+                            }}
+                            onPress={() => {
+                                AsyncStorage.setItem('is_login_skipped','yes');
+                                navigation.replace('Drawer')
+                            }}
+                        >
+                            <Text style={{
+                                color:color.secondaryColor,
+                                fontSize: height * 0.02
+                            }}>SKIP</Text>
+                        </TouchableHighlight> : <></>
+                    }
 
                 {/* loader */}
                 {showLoader ?

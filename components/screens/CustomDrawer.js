@@ -135,7 +135,7 @@ export default function CustomDrawer(props) {
                                                 payload: { schemeListData: [] }
                                             })
                                             dispatch({
-                                                type: 'GET_PROFILE', payload:{}
+                                                type: 'GET_PROFILE', payload: {}
                                             })
                                             await AsyncStorage.setItem("is_login_skipped", "yes")
                                             await AsyncStorage.setItem("log_state", "logout")
@@ -346,22 +346,25 @@ export default function CustomDrawer(props) {
                                 </TouchableHighlight>
                                 <View style={{ ...drawerStyle.viewDivider, marginTop: 10 }} />
 
-                                <TouchableHighlight
-                                    onPress={() => {
-                                        props.navigation.navigate('MapScreen')
-                                        props.navigation.closeDrawer()
-                                    }}
-                                    underlayColor="transparent"
-                                >
-                                    <View style={{ flexDirection: 'row', paddingTop: 15, paddingLeft: 5 }}>
+                                {loginSkip === 'no' ?
+                                    <TouchableHighlight
+                                        onPress={() => {
+                                            props.navigation.navigate('MapScreen')
+                                            props.navigation.closeDrawer()
+                                        }}
+                                        underlayColor="transparent"
+                                    >
+                                        <View style={{ flexDirection: 'row', paddingTop: 15, paddingLeft: 5 }}>
 
-                                        {(color?.mainColor === '#ffffff') ? <IonIcon name='location-outline' size={23} color="#e49e2b" /> :
-                                            <IonIcon name='location-outline' size={23} color="white" />
-                                        }
-                                        <Text style={{ ...drawerStyle.navbtnStyle, color: secColor }}>Store Locator</Text>
-                                    </View>
-                                </TouchableHighlight>
-                                <View style={{ ...drawerStyle.viewDivider, marginTop: 10 }} />
+                                            {(color?.mainColor === '#ffffff') ? <IonIcon name='location-outline' size={23} color="#e49e2b" /> :
+                                                <IonIcon name='location-outline' size={23} color="white" />
+                                            }
+                                            <Text style={{ ...drawerStyle.navbtnStyle, color: secColor }}>Store Locator</Text>
+                                        </View>
+                                    </TouchableHighlight> : <></>}
+
+                                {loginSkip === 'no' ?    
+                                <View style={{ ...drawerStyle.viewDivider, marginTop: 10 }} />: <></>}
 
                                 <TouchableHighlight
                                     onPress={() => {

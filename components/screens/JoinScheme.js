@@ -145,7 +145,8 @@ export default function JoinScheme({ navigation }) {
             axois.post(`${API_URL}PJjewels/Api/Chit/ChitMaster/MobileActiveList`, {
                 "ChitType": schemeType,
                 "ChitCategory": schemeCategory,
-                "ItemGroup": chitGroup //Scheme group
+                "ItemGroup": chitGroup, //Scheme group
+                "New":"Y"
             })
                 .then(
                     (res) => {

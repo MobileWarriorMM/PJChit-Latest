@@ -321,12 +321,12 @@ export default function ProfileScreen({ navigation }) {
                 if (res.didCancel) {
                     dispatch({
                         type: "DIALOG_VISIBLE",
-                        payload: { visible: true, msg: "User cancelled image picker", title: 'Success' }
+                        payload: { visible: true, msg: "User cancelled image picker", title: 'Alert' }
                     })
                 } else if (res.error) {
                     dispatch({
                         type: "DIALOG_VISIBLE",
-                        payload: { visible: true, msg: res.error, title: 'Success' }
+                        payload: { visible: true, msg: res.error, title: 'Error' }
                     })
                 } else if (res.customButton) {
                     alert(res.customButton);

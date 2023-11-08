@@ -65,6 +65,7 @@ import { Platform, Linking, AppState } from 'react-native';
 import AppUpdateAlert from './components/common_utils/UpdateAlert';
 import GraphModal from './components/common_utils/GraphModal';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import SideDrawer from './components/screens/SideDrawer';
 
 // import connectionBandWidth from 'react-native-network-bandwith-speed'
 //for ios
@@ -189,7 +190,8 @@ const Mydrawertab = () => {
       drawerContent={
         (props) => {
           return (
-            <CustomDrawer {...props} />
+            // <CustomDrawer {...props} />
+            <SideDrawer {...props} />
           )
         }
       }

@@ -92,7 +92,7 @@ export default function RegisterScreen({ navigation }) {
     }
 
     const getCountryByUserCode = async () => {
-        setShowLoader(showLoader = true)
+        //setShowLoader(showLoader = true)
         // dispatch({ type: 'LOADER_VISIBLE', payload: { visible: true } })
 
         try {
@@ -121,7 +121,7 @@ export default function RegisterScreen({ navigation }) {
     const getStatesByUserCode = (e) => {
 
         // dispatch({ type: 'LOADER_VISIBLE', payload: { visible: true } })
-        setShowLoader(showLoader = true)
+        //setShowLoader(showLoader = true)
 
         try {
 
@@ -156,7 +156,7 @@ export default function RegisterScreen({ navigation }) {
         var stateID = e;
 
         // dispatch({ type: 'LOADER_VISIBLE', payload: { visible: true } })
-        setShowLoader(showLoader = true)
+        //setShowLoader(showLoader = true)
 
 
         try {
@@ -208,7 +208,7 @@ export default function RegisterScreen({ navigation }) {
     }, [])
 
 
-    console.log('showLoader',showLoader);
+    console.log('showLoader', showLoader);
     return (
         <KeyboardWraper>
 
@@ -432,334 +432,334 @@ export default function RegisterScreen({ navigation }) {
 
 
 
-           
-                <View style={{ ...styles.mainContainer, backgroundColor: color.mainColor }}>
 
-                    {/* Main view */}
-                    <View style={styles.column}>
+            <View style={{ ...styles.mainContainer, backgroundColor: color.mainColor }}>
 
-                        <View>
-                            <Text style={{
-                                color: COLORS.DARK_BLUE,
-                                fontSize: height * 0.03 / fontScaleOfDevice,
-                                marginTop: 60,
-                                alignSelf: 'center',
-                                fontFamily: FONTS.FONT_BOLD
-                            }}>User Registration</Text>
+                {/* Main view */}
+                <View style={styles.column}>
 
-                            <Text style={{
-                                color: COLORS.DARK_BLUE,
-                                fontSize: height * 0.02 / fontScaleOfDevice,
-                                marginTop: 10,
-                                alignSelf: 'center',
-                                fontFamily: FONTS.FONT_REGULAR
-                            }}>Your Basic Information</Text>
+                    <View>
+                        <Text style={{
+                            color: COLORS.DARK_BLUE,
+                            fontSize: height * 0.03 / fontScaleOfDevice,
+                            marginTop: 60,
+                            alignSelf: 'center',
+                            fontFamily: FONTS.FONT_BOLD
+                        }}>User Registration</Text>
 
-                            {/* name */}
-                            <View style={{ ...styles.editTextBorder, marginTop: 40 }}>
-                                <Text style={styles.placeHolderText}> Name <Text
-                                    style={{ color: 'red', fontSize: height * 0.02 / fontScaleOfDevice, }}> * </Text></Text>
-                                <View style={styles.textRow}>
-                                    <FAIcon name="user-circle-o" size={27} color="#bf7a08" style={{
-                                        marginLeft: 10, marginRight: 10
-                                    }} />
-                                    <TextInput
-                                        numberOfLines={1}
-                                        autoCapitalize="words"
-                                        value={userName}
-                                        keyboardType='default'
-                                        onChangeText={(e) => {
-                                            setUserName(userName = e.replace(/[^a-z0-9 ]/gi, ''))
-                                        }}
-                                        placeholder="Enter name"
-                                        placeholderTextColor={"gray"}
-                                        style={styles.editTextTextStyle}
-                                    />
-                                </View>
+                        <Text style={{
+                            color: COLORS.DARK_BLUE,
+                            fontSize: height * 0.02 / fontScaleOfDevice,
+                            marginTop: 10,
+                            alignSelf: 'center',
+                            fontFamily: FONTS.FONT_REGULAR
+                        }}>Your Basic Information</Text>
+
+                        {/* name */}
+                        <View style={{ ...styles.editTextBorder, marginTop: 40 }}>
+                            <Text style={styles.placeHolderText}> Name <Text
+                                style={{ color: 'red', fontSize: height * 0.02 / fontScaleOfDevice, }}> * </Text></Text>
+                            <View style={styles.textRow}>
+                                <FAIcon name="user-circle-o" size={27} color="#bf7a08" style={{
+                                    marginLeft: 10, marginRight: 10
+                                }} />
+                                <TextInput
+                                    numberOfLines={1}
+                                    autoCapitalize="words"
+                                    value={userName}
+                                    keyboardType='default'
+                                    onChangeText={(e) => {
+                                        setUserName(userName = e.replace(/[^a-z0-9 ]/gi, ''))
+                                    }}
+                                    placeholder="Enter name"
+                                    placeholderTextColor={"gray"}
+                                    style={styles.editTextTextStyle}
+                                />
                             </View>
-
-                            {/* mobile number */}
-                            <View style={{ ...styles.editTextBorder, marginTop: 20 }}>
-                                <Text style={styles.placeHolderText}> Mobile No <Text
-                                    style={{ color: 'red', fontSize: height * 0.02 / fontScaleOfDevice, }}> * </Text></Text>
-                                <View style={styles.textRow}>
-                                    <FAIcon name="phone" size={27} color="#bf7a08" style={{
-                                        marginLeft: 10, marginRight: 10
-                                    }} />
-                                    <TextInput
-                                        keyboardType="phone-pad"
-                                        numberOfLines={1}
-                                        value={userMobile}
-                                        maxLength={10}
-                                        onChangeText={(e) => {
-                                            setUserMobile(e)
-                                        }}
-                                        placeholderTextColor={"gray"}
-                                        placeholder="Enter mobile number"
-                                        style={styles.editTextTextStyle}
-                                    />
-                                </View>
-                            </View>
-
-                            {/* email */}
-                            <View style={{ ...styles.editTextBorder, marginTop: 20 }}>
-                                <Text style={styles.placeHolderText}> Email ID <Text
-                                    style={{ color: 'red', fontSize: 12 }}></Text></Text>
-                                <View style={styles.textRow}>
-                                    <EntypoIcon name="email" size={27} color="#bf7a08" style={{
-                                        marginLeft: 10, marginRight: 10
-                                    }} />
-                                    <TextInput
-                                        keyboardType="email-address"
-                                        numberOfLines={1}
-                                        value={userMailId}
-                                        onChangeText={(e) => {
-                                            setUserMailId(e)
-                                        }}
-                                        autoCapitalize="none"
-                                        placeholderTextColor={"gray"}
-                                        placeholder="Enter email id"
-                                        style={styles.editTextTextStyle}
-                                    />
-                                </View>
-                            </View>
-                            {userMailId !== '' && !checkValidMail(userMailId) ?
-                                <Text style={{
-                                    color: 'red',
-                                    fontSize: height * 0.018,
-                                    fontFamily: FONTS.FONT_REGULAR,
-                                    marginLeft: 25,
-                                    marginTop: 5
-                                }}>Enter valid email id!</Text> :
-                                <></>
-                            }
-
-                            {/* dob */}
-                            <View style={{ ...styles.editTextBorder, marginTop: 20, justifyContent: 'center' }}>
-                                <Text style={styles.placeHolderText}> DOB <Text
-                                    style={{ color: 'red', fontSize: 12 }}></Text></Text>
-                                <View
-                                    onStartShouldSetResponder={() => setShowDatePick(!showDatePick)}
-                                    style={styles.textRow}>
-                                    <MaterialIcon name="calendar-month" size={27} color="#bf7a08" style={{
-                                        marginLeft: 10, marginRight: 10
-                                    }} />
-                                    <Text style={{
-                                        color: userDob === "" ? "gray" : 'black',
-                                        flex: 1,
-                                        fontFamily: FONTS.FONT_REGULAR,
-                                        fontSize: height * 0.02 / fontScaleOfDevice,
-                                    }}>
-                                        {userDob === "" ? "Select Date Of Birth" : moment(userDob).format('DD-MM-YYYY')}
-                                    </Text>
-                                    <MaterialIcon name="calendar-month" size={27} color="#ddd" style={{
-                                        marginLeft: 10, marginRight: 10
-                                    }} />
-                                </View>
-                            </View>
-
                         </View>
 
-                        <View>
-                            <View style={{ ...styles.editTextBorder, marginTop: 20 }}>
-                                <Text style={styles.placeHolderText}> Address Name <Text
-                                    style={{ color: 'red', fontSize: height * 0.02 / fScale }}> * </Text></Text>
-                                <View style={styles.textRow}>
-
-                                    <TextInput
-                                        keyboardType="default"
-                                        numberOfLines={1}
-                                        value={addressName == "null" ? "" : addressName}
-                                        onChangeText={(e) => {
-                                            setAddressName(addressName = e.replace(/[^a-z0-9 ]/gi, ''))
-
-                                        }}
-                                        placeholderTextColor={"gray"}
-                                        placeholder="Enter Address Name"
-                                        style={styles.inputText}
-                                    />
-                                    {
-                                        addressName !== "" ?
-                                            <TouchableHighlight
-                                                underlayColor={'transparent'}
-                                                onPress={() => {
-                                                    //Keyboard.dismiss()
-                                                    setAddressName(addressName = "")
-                                                }}
-                                            >
-                                                <AntIcon name="closecircle" size={15} color="gray" style={{
-                                                    marginLeft: 10, marginRight: 10,
-                                                }} />
-                                            </TouchableHighlight> : <></>
-                                    }
-                                </View>
+                        {/* mobile number */}
+                        <View style={{ ...styles.editTextBorder, marginTop: 20 }}>
+                            <Text style={styles.placeHolderText}> Mobile No <Text
+                                style={{ color: 'red', fontSize: height * 0.02 / fontScaleOfDevice, }}> * </Text></Text>
+                            <View style={styles.textRow}>
+                                <FAIcon name="phone" size={27} color="#bf7a08" style={{
+                                    marginLeft: 10, marginRight: 10
+                                }} />
+                                <TextInput
+                                    keyboardType="phone-pad"
+                                    numberOfLines={1}
+                                    value={userMobile}
+                                    maxLength={10}
+                                    onChangeText={(e) => {
+                                        setUserMobile(e)
+                                    }}
+                                    placeholderTextColor={"gray"}
+                                    placeholder="Enter mobile number"
+                                    style={styles.editTextTextStyle}
+                                />
                             </View>
+                        </View>
 
-                            <View style={{ ...styles.editTextBorder, marginTop: 20 }}>
-                                <Text style={styles.placeHolderText}> Block No. <Text
-                                    style={{ color: 'red', fontSize: height * 0.02 / fScale }}> * </Text></Text>
-                                <View style={styles.textRow}>
-                                    <TextInput
-                                        keyboardType='default'
-                                        numberOfLines={1}
-                                        value={blockNo == "null" ? "" : blockNo}
-                                        onChangeText={(e) => {
-                                            setBlockNum(blockNo = e)
-                                        }}
-                                        placeholderTextColor={"gray"}
-                                        placeholder="Enter block no"
-                                        style={styles.inputText} />
-                                    {
-                                        blockNo !== "" ?
-                                            <TouchableHighlight
-                                                underlayColor={'transparent'}
-                                                onPress={() => {
-                                                    setBlockNum(blockNo = "")
-                                                }}
-                                            >
-                                                <AntIcon name="closecircle" size={15} color="gray" style={{
-                                                    marginLeft: 10, marginRight: 10,
-                                                }} />
-                                            </TouchableHighlight> : <></>
-                                    }
-                                </View>
+                        {/* email */}
+                        <View style={{ ...styles.editTextBorder, marginTop: 20 }}>
+                            <Text style={styles.placeHolderText}> Email ID <Text
+                                style={{ color: 'red', fontSize: 12 }}></Text></Text>
+                            <View style={styles.textRow}>
+                                <EntypoIcon name="email" size={27} color="#bf7a08" style={{
+                                    marginLeft: 10, marginRight: 10
+                                }} />
+                                <TextInput
+                                    keyboardType="email-address"
+                                    numberOfLines={1}
+                                    value={userMailId}
+                                    onChangeText={(e) => {
+                                        setUserMailId(e)
+                                    }}
+                                    autoCapitalize="none"
+                                    placeholderTextColor={"gray"}
+                                    placeholder="Enter email id"
+                                    style={styles.editTextTextStyle}
+                                />
                             </View>
+                        </View>
+                        {userMailId !== '' && !checkValidMail(userMailId) ?
+                            <Text style={{
+                                color: 'red',
+                                fontSize: height * 0.018,
+                                fontFamily: FONTS.FONT_REGULAR,
+                                marginLeft: 25,
+                                marginTop: 5
+                            }}>Enter valid email id!</Text> :
+                            <></>
+                        }
 
-                            <View style={{ ...styles.editTextBorder, marginTop: 20 }}>
-                                <Text style={styles.placeHolderText}> Street <Text
-                                    style={{ color: 'red', fontSize: height * 0.02 / fScale }}> * </Text></Text>
-                                <View style={styles.textRow}>
-
-                                    <TextInput
-                                        keyboardType="default"
-                                        numberOfLines={1}
-                                        value={street === "null" ? "" : street}
-                                        onChangeText={(e) => {
-                                            setStreet(street = e)
-                                        }}
-                                        placeholderTextColor={"gray"}
-                                        placeholder="Enter street"
-                                        style={styles.inputText}
-                                    />
-                                    {
-                                        street !== "" ?
-                                            <TouchableHighlight
-                                                underlayColor={'transparent'}
-                                                onPress={() => {
-                                                    setStreet(street = "")
-                                                }}
-                                            >
-                                                <AntIcon name="closecircle" size={15} color="gray" style={{
-                                                    marginLeft: 10, marginRight: 10,
-                                                }} />
-                                            </TouchableHighlight> : <></>
-                                    }
-                                </View>
+                        {/* dob */}
+                        <View style={{ ...styles.editTextBorder, marginTop: 20, justifyContent: 'center' }}>
+                            <Text style={styles.placeHolderText}> DOB <Text
+                                style={{ color: 'red', fontSize: 12 }}></Text></Text>
+                            <View
+                                onStartShouldSetResponder={() => setShowDatePick(!showDatePick)}
+                                style={styles.textRow}>
+                                <MaterialIcon name="calendar-month" size={27} color="#bf7a08" style={{
+                                    marginLeft: 10, marginRight: 10
+                                }} />
+                                <Text style={{
+                                    color: userDob === "" ? "gray" : 'black',
+                                    flex: 1,
+                                    fontFamily: FONTS.FONT_REGULAR,
+                                    fontSize: height * 0.02 / fontScaleOfDevice,
+                                }}>
+                                    {userDob === "" ? "Select Date Of Birth" : moment(userDob).format('DD-MM-YYYY')}
+                                </Text>
+                                <MaterialIcon name="calendar-month" size={27} color="#ddd" style={{
+                                    marginLeft: 10, marginRight: 10
+                                }} />
                             </View>
+                        </View>
 
-                            <View style={{ height: 10 }} />
-                            <AutoCompleteDropDown
-                                value={area}
-                                placeHolderText={'Enter area name'}
-                                onChange={(val) => {
-                                    if (val.length > 2) {
-                                        if (district === undefined || district === "") {
-                                            SnackBarUtil({ message: 'Select district to get more area.', isError: true })
-                                        } else {
-                                            getAreaSuggions(val)
-                                        }
-                                    }
-                                    setArea(area = val)
-                                }}
-                                lable={'Area'}
-                                displayField={'area'}
-                                onValueSelected={(val) => {
-                                    setAreaSuggList([])
-                                    setArea(val?.area)
-                                    setZipCode(val?.zipcode + '')
-                                    setDistrict(val?.district)
-                                    //console.log(val)
-                                }}
-                                clearBtnPressed={() => {
-                                    setArea(area = "");
-                                    setAreaSuggList([]);
-                                }}
-                                data={areaSuggList}
-                            />
-                            <View style={{ height: 20 }} />
-                            <AutoCompleteDropDown
-                                value={district}
-                                placeHolderText={'Enter district'}
-                                onChange={(val) => {
-                                    setDistrict(val)
-                                    setDisId(disId = val.id + '')
-                                }}
-                                lable={'District'}
-                                displayField={'display'}
-                                onValueSelected={(val) => {
-                                    setDistrict(val?.display)
-                                    setDisId(val?.value?.id + '')
-                                }}
-                                clearBtnPressed={() => {
-                                    setDistrict('')
-                                }}
-                                data={
-                                    districtsList.map((e, i) => {
-                                        return (
-                                            { display: e.name, value: e }
-                                        )
-                                    })
+                    </View>
+
+                    <View>
+                        <View style={{ ...styles.editTextBorder, marginTop: 20 }}>
+                            <Text style={styles.placeHolderText}> Address Name <Text
+                                style={{ color: 'red', fontSize: height * 0.02 / fScale }}> * </Text></Text>
+                            <View style={styles.textRow}>
+
+                                <TextInput
+                                    keyboardType="default"
+                                    numberOfLines={1}
+                                    value={addressName == "null" ? "" : addressName}
+                                    onChangeText={(e) => {
+                                        setAddressName(addressName = e.replace(/[^a-z0-9 ]/gi, ''))
+
+                                    }}
+                                    placeholderTextColor={"gray"}
+                                    placeholder="Enter Address Name"
+                                    style={styles.inputText}
+                                />
+                                {
+                                    addressName !== "" ?
+                                        <TouchableHighlight
+                                            underlayColor={'transparent'}
+                                            onPress={() => {
+                                                //Keyboard.dismiss()
+                                                setAddressName(addressName = "")
+                                            }}
+                                        >
+                                            <AntIcon name="closecircle" size={15} color="gray" style={{
+                                                marginLeft: 10, marginRight: 10,
+                                            }} />
+                                        </TouchableHighlight> : <></>
                                 }
-                            />
-                            <View style={{ height: 10 }} />
+                            </View>
+                        </View>
 
+                        <View style={{ ...styles.editTextBorder, marginTop: 20 }}>
+                            <Text style={styles.placeHolderText}> Block No. <Text
+                                style={{ color: 'red', fontSize: height * 0.02 / fScale }}> * </Text></Text>
+                            <View style={styles.textRow}>
+                                <TextInput
+                                    keyboardType='default'
+                                    numberOfLines={1}
+                                    value={blockNo == "null" ? "" : blockNo}
+                                    onChangeText={(e) => {
+                                        setBlockNum(blockNo = e)
+                                    }}
+                                    placeholderTextColor={"gray"}
+                                    placeholder="Enter block no"
+                                    style={styles.inputText} />
+                                {
+                                    blockNo !== "" ?
+                                        <TouchableHighlight
+                                            underlayColor={'transparent'}
+                                            onPress={() => {
+                                                setBlockNum(blockNo = "")
+                                            }}
+                                        >
+                                            <AntIcon name="closecircle" size={15} color="gray" style={{
+                                                marginLeft: 10, marginRight: 10,
+                                            }} />
+                                        </TouchableHighlight> : <></>
+                                }
+                            </View>
+                        </View>
+
+                        <View style={{ ...styles.editTextBorder, marginTop: 20 }}>
+                            <Text style={styles.placeHolderText}> Street <Text
+                                style={{ color: 'red', fontSize: height * 0.02 / fScale }}> * </Text></Text>
+                            <View style={styles.textRow}>
+
+                                <TextInput
+                                    keyboardType="default"
+                                    numberOfLines={1}
+                                    value={street === "null" ? "" : street}
+                                    onChangeText={(e) => {
+                                        setStreet(street = e)
+                                    }}
+                                    placeholderTextColor={"gray"}
+                                    placeholder="Enter street"
+                                    style={styles.inputText}
+                                />
+                                {
+                                    street !== "" ?
+                                        <TouchableHighlight
+                                            underlayColor={'transparent'}
+                                            onPress={() => {
+                                                setStreet(street = "")
+                                            }}
+                                        >
+                                            <AntIcon name="closecircle" size={15} color="gray" style={{
+                                                marginLeft: 10, marginRight: 10,
+                                            }} />
+                                        </TouchableHighlight> : <></>
+                                }
+                            </View>
+                        </View>
+
+                        <View style={{ height: 10 }} />
+                        <AutoCompleteDropDown
+                            value={area}
+                            placeHolderText={'Enter area name'}
+                            onChange={(val) => {
+                                if (val.length > 2) {
+                                    if (district === undefined || district === "") {
+                                        SnackBarUtil({ message: 'Select district to get more area.', isError: true })
+                                    } else {
+                                        getAreaSuggions(val)
+                                    }
+                                }
+                                setArea(area = val)
+                            }}
+                            lable={'Area'}
+                            displayField={'area'}
+                            onValueSelected={(val) => {
+                                setAreaSuggList([])
+                                setArea(val?.area)
+                                setZipCode(val?.zipcode + '')
+                                setDistrict(val?.district)
+                                //console.log(val)
+                            }}
+                            clearBtnPressed={() => {
+                                setArea(area = "");
+                                setAreaSuggList([]);
+                            }}
+                            data={areaSuggList}
+                        />
+                        <View style={{ height: 20 }} />
+                        <AutoCompleteDropDown
+                            value={district}
+                            placeHolderText={'Enter district'}
+                            onChange={(val) => {
+                                setDistrict(val)
+                                setDisId(disId = val.id + '')
+                            }}
+                            lable={'District'}
+                            displayField={'display'}
+                            onValueSelected={(val) => {
+                                setDistrict(val?.display)
+                                setDisId(val?.value?.id + '')
+                            }}
+                            clearBtnPressed={() => {
+                                setDistrict('')
+                            }}
+                            data={
+                                districtsList.map((e, i) => {
+                                    return (
+                                        { display: e.name, value: e }
+                                    )
+                                })
+                            }
+                        />
+                        <View style={{ height: 10 }} />
+
+                        <View style={{ ...styles.editTextBorder, marginTop: 20 }}>
+                            <Text style={styles.placeHolderText}> Zip Code <Text
+                                style={{ color: 'red', fontSize: height * 0.02 / fScale }}> * </Text></Text>
+                            <View style={styles.textRow}>
+                                <TextInput
+                                    keyboardType='numeric'
+                                    numberOfLines={1}
+                                    maxLength={6}
+                                    value={zipCode}
+                                    onChangeText={(e) => {
+                                        const re = /^[0-9\b]+$/;
+                                        if (e === '' || re.test(e)) {
+                                            setZipCode(zipCode = e)
+                                        }
+                                    }}
+                                    placeholderTextColor={"gray"}
+                                    placeholder="Enter zip code"
+                                    style={styles.inputText}
+                                />
+                                {
+                                    zipCode !== "" ?
+                                        <TouchableHighlight
+                                            underlayColor={'#ddd'}
+                                            onPress={() => {
+                                                setZipCode(zipCode = "")
+                                            }}
+                                        >
+                                            <AntIcon name="closecircle" size={15} color="gray" style={{
+                                                marginLeft: 10, marginRight: 10,
+                                            }} />
+                                        </TouchableHighlight> : <></>
+                                }
+                            </View>
+                        </View>
+
+                        <View style={{ height: 10 }} />
+
+                        <TouchableHighlight
+                            onPress={() => setShowState(!showState)}
+                            underlayColor="transparent"
+                        >
                             <View style={{ ...styles.editTextBorder, marginTop: 20 }}>
-                                <Text style={styles.placeHolderText}> Zip Code <Text
+                                <Text style={styles.placeHolderText}> State <Text
                                     style={{ color: 'red', fontSize: height * 0.02 / fScale }}> * </Text></Text>
                                 <View style={styles.textRow}>
-                                    <TextInput
-                                        keyboardType='numeric'
-                                        numberOfLines={1}
-                                        maxLength={6}
-                                        value={zipCode}
-                                        onChangeText={(e) => {
-                                            const re = /^[0-9\b]+$/;
-                                            if (e === '' || re.test(e)) {
-                                                setZipCode(zipCode = e)
-                                            }
-                                        }}
-                                        placeholderTextColor={"gray"}
-                                        placeholder="Enter zip code"
-                                        style={styles.inputText}
-                                    />
-                                    {
-                                        zipCode !== "" ?
-                                            <TouchableHighlight
-                                                underlayColor={'#ddd'}
-                                                onPress={() => {
-                                                    setZipCode(zipCode = "")
-                                                }}
-                                            >
-                                                <AntIcon name="closecircle" size={15} color="gray" style={{
-                                                    marginLeft: 10, marginRight: 10,
-                                                }} />
-                                            </TouchableHighlight> : <></>
-                                    }
-                                </View>
-                            </View>
-
-                            <View style={{ height: 10 }} />
-
-                            <TouchableHighlight
-                                onPress={() => setShowState(!showState)}
-                                underlayColor="transparent"
-                            >
-                                <View style={{ ...styles.editTextBorder, marginTop: 20 }}>
-                                    <Text style={styles.placeHolderText}> State <Text
-                                        style={{ color: 'red', fontSize: height * 0.02 / fScale }}> * </Text></Text>
-                                    <View style={styles.textRow}>
-
-                                        <TextInput
+                                    <Text style={styles.inputText}>{state}</Text>
+                                    {/* <TextInput
                                             keyboardType="default"
                                             editable={false}
                                             numberOfLines={1}
@@ -770,23 +770,24 @@ export default function RegisterScreen({ navigation }) {
                                             placeholderTextColor={"gray"}
                                             placeholder="Select state"
                                             style={styles.inputText}
-                                        />
-                                    </View>
+                                        /> */}
                                 </View>
-                            </TouchableHighlight>
+                            </View>
+                        </TouchableHighlight>
 
 
-                            <View style={{ height: 10 }} />
+                        <View style={{ height: 10 }} />
 
-                            <TouchableHighlight
-                                onPress={() => setShowCountry(!showCountry)}
-                                underlayColor="transparent"
-                            >
-                                <View style={{ ...styles.editTextBorder, marginTop: 20 }}>
-                                    <Text style={styles.placeHolderText}> Country <Text
-                                        style={{ color: 'red', fontSize: height * 0.02 / fScale }}> * </Text></Text>
-                                    <View style={styles.textRow}>
-                                        <TextInput
+                        <TouchableHighlight
+                            onPress={() => setShowCountry(!showCountry)}
+                            underlayColor="transparent"
+                        >
+                            <View style={{ ...styles.editTextBorder, marginTop: 20 }}>
+                                <Text style={styles.placeHolderText}> Country <Text
+                                    style={{ color: 'red', fontSize: height * 0.02 / fScale }}> * </Text></Text>
+                                <View style={styles.textRow}>
+                                    <Text style={styles.inputText}>{country}</Text>
+                                    {/* <TextInput
                                             keyboardType="default"
                                             numberOfLines={1}
                                             editable={false}
@@ -797,227 +798,227 @@ export default function RegisterScreen({ navigation }) {
                                             placeholderTextColor={"gray"}
                                             placeholder="Enter country"
                                             style={styles.inputText}
-                                        />
-                                    </View>
+                                        /> */}
                                 </View>
-                            </TouchableHighlight>
-
-                        </View>
-
-
-
-
-
-                        {/* next btn */}
-                        <TouchableHighlight
-                            underlayColor={"#ddd"}
-                            onPress={() => {
-                                //requestPermission();
-                                // Validate the inputs
-                                Keyboard.dismiss()
-                                if (userName === "") {
-                                    SnackBarUtil({ message: "Please Enter User Name!", isError: true })
-                                } else if (userMobile === "" || userMobile.length < 10) {
-                                    SnackBarUtil({ message: "Please Enter Correct Mobile Number!", isError: true })
-                                } else if (addressName === null && blockNo === null && street === null
-                                    && district === null && zipCode === null && state === null && country === null
-                                ) {
-                                    dispatch({
-                                        type: 'DIALOG_VISIBLE',
-                                        payload: {
-                                            visible: true,
-                                            msg: "All Fields Are Empty! Please Fill The Form Then Proceed.",
-                                            title: "Alert"
-                                        }
-                                    })
-                                } else if (userMailId !== '' && !checkValidMail(userMailId)) {
-                                    SnackBarUtil({ message: "Please Enter a valid email id!", isError: true })
-                                }
-                                else if (addressName === "") {
-                                    SnackBarUtil({ message: "Please Enter Address Name!", isError: true })
-                                } else if (blockNo === "") {
-                                    SnackBarUtil({ message: "Please Enter Block Number!", isError: true })
-                                } else if (street === "") {
-                                    SnackBarUtil({ message: "Please Enter Street Name!", isError: true })
-                                } else if (area === "" || area === undefined) {
-                                    SnackBarUtil({ message: "Please Enter The Area Name!", isError: true })
-                                } else if (district === "" || district === undefined) {
-                                    SnackBarUtil({ message: "Please Enter The District!", isError: true })
-                                }
-                                else if (zipCode === "" || zipCode.length < 6) {
-                                    SnackBarUtil({ message: "Please Enter Correct ZipCode!", isError: true })
-                                } else if (state === "") {
-                                    SnackBarUtil({ message: "Please Enter The State Name!", isError: true })
-                                } else if (country === "") {
-                                    SnackBarUtil({ message: "Please Enter The Country Name!", isError: true })
-                                } else {
-                                    var addressList = [
-                                        {
-                                            "AddressType": "B",
-                                            "AddressName": addressName,
-                                            "BlockNo": blockNo,
-                                            "Street": street,
-                                            "Building": area,
-                                            "Zipcode": parseInt(zipCode),
-                                            "DistrictId": disId,
-                                            "StateId": stateId,
-                                            "CountryId": countryId,
-                                            "SetAsDefault": "Y"
-                                        },
-                                        {
-                                            "AddressType": "S",
-                                            "AddressName": addressName,
-                                            "BlockNo": blockNo,
-                                            "Street": street,
-                                            "Building": area,
-                                            "Zipcode": parseInt(zipCode),
-                                            "DistrictId": disId,
-                                            "StateId": stateId,
-                                            "CountryId": countryId,
-                                            "SetAsDefault": "Y"
-                                        }
-                                    ]
-                                    dispatch({
-                                        type: 'SET_USER_REGISTER',
-                                        payload: {
-                                            Number: userMobile,
-                                            UserName: userName.trim(),
-                                            Cellular: userMobile.trim(),
-                                            EmailID: userMailId.trim(),
-                                            UserDOB: userDob.trim(),
-                                            AddressList: addressList
-                                        },
-                                        navigation: navigation
-                                    })
-
-                                }
-                            }}
-                            style={{ ...styles.loginBtn, backgroundColor: color.mainColor }}>
-                            <Text style={{ ...styles.loginBtnText, color: color.secondaryColor }}>NEXT</Text>
+                            </View>
                         </TouchableHighlight>
 
-                        <View style={{ height: height * 0.1 / 2 }} />
-
-
-                    </View>
-                    {/* circular */}
-                    <View style={{ ...styles.circleAvatar, backgroundColor: color.mainColor }}>
-                        {/* <Icon name="user" size={45} color={color.secondaryColor} style={styles.iconStyle} /> */}
-                        <Image
-                            source={require('../../assets/images/pjlogocrop.png')}
-                            resizeMode='contain'
-                            //resizeMethod='resize'
-                            style={{
-                                height: 80, width: 80,
-                                borderRadius: 160,
-                                backgroundColor: color.mainColor,
-                            }}
-                        />
                     </View>
 
-                    {/* footer */}
-                    {/* <FooterText /> */}
 
-                    <Image source={require('../../assets/images/Layer.png')}
-                        style={{ height: height * 0.17, width: width * 0.45 }} />
-                    {/* date picker */}
-                    {
-                        showDatePick ?
-                            <DatePicker
-                                open={showDatePick}
-                                confirmText="SELECT"
-                                title="Select DOB"
-                                modal
-                                date={date}
-                                mode="date"
-                                onConfirm={(date) => {
-                                    const curr = new Date();
-                                    if (date.getFullYear() > curr.getFullYear()) {
-                                        SnackBarUtil({
-                                            message: "Invalid Date Of Birth!",
-                                            isError: true
-                                        })
-                                    } else {
-                                        // var formated = Moment(date).format("YYYY-MM-DD").toString()
-                                        var formated = Moment(date).format("YYYY-MM-DD")
-                                        setUserDob(formated)
-                                        setShowDatePick(false)
+
+
+
+                    {/* next btn */}
+                    <TouchableHighlight
+                        underlayColor={"#ddd"}
+                        onPress={() => {
+                            //requestPermission();
+                            // Validate the inputs
+                            Keyboard.dismiss()
+                            if (userName === "") {
+                                SnackBarUtil({ message: "Please Enter User Name!", isError: true })
+                            } else if (userMobile === "" || userMobile.length < 10) {
+                                SnackBarUtil({ message: "Please Enter Correct Mobile Number!", isError: true })
+                            } else if (addressName === null && blockNo === null && street === null
+                                && district === null && zipCode === null && state === null && country === null
+                            ) {
+                                dispatch({
+                                    type: 'DIALOG_VISIBLE',
+                                    payload: {
+                                        visible: true,
+                                        msg: "All Fields Are Empty! Please Fill The Form Then Proceed.",
+                                        title: "Alert"
                                     }
-                                }}
-                                onCancel={() => {
-                                    setShowDatePick(false)
-                                }}
-                            /> : null
-                    }
+                                })
+                            } else if (userMailId !== '' && !checkValidMail(userMailId)) {
+                                SnackBarUtil({ message: "Please Enter a valid email id!", isError: true })
+                            }
+                            else if (addressName === "") {
+                                SnackBarUtil({ message: "Please Enter Address Name!", isError: true })
+                            } else if (blockNo === "") {
+                                SnackBarUtil({ message: "Please Enter Block Number!", isError: true })
+                            } else if (street === "") {
+                                SnackBarUtil({ message: "Please Enter Street Name!", isError: true })
+                            } else if (area === "" || area === undefined) {
+                                SnackBarUtil({ message: "Please Enter The Area Name!", isError: true })
+                            } else if (district === "" || district === undefined) {
+                                SnackBarUtil({ message: "Please Enter The District!", isError: true })
+                            }
+                            else if (zipCode === "" || zipCode.length < 6) {
+                                SnackBarUtil({ message: "Please Enter Correct ZipCode!", isError: true })
+                            } else if (state === "") {
+                                SnackBarUtil({ message: "Please Enter The State Name!", isError: true })
+                            } else if (country === "") {
+                                SnackBarUtil({ message: "Please Enter The Country Name!", isError: true })
+                            } else {
+                                var addressList = [
+                                    {
+                                        "AddressType": "B",
+                                        "AddressName": addressName,
+                                        "BlockNo": blockNo,
+                                        "Street": street,
+                                        "Building": area,
+                                        "Zipcode": parseInt(zipCode),
+                                        "DistrictId": disId,
+                                        "StateId": stateId,
+                                        "CountryId": countryId,
+                                        "SetAsDefault": "Y"
+                                    },
+                                    {
+                                        "AddressType": "S",
+                                        "AddressName": addressName,
+                                        "BlockNo": blockNo,
+                                        "Street": street,
+                                        "Building": area,
+                                        "Zipcode": parseInt(zipCode),
+                                        "DistrictId": disId,
+                                        "StateId": stateId,
+                                        "CountryId": countryId,
+                                        "SetAsDefault": "Y"
+                                    }
+                                ]
+                                dispatch({
+                                    type: 'SET_USER_REGISTER',
+                                    payload: {
+                                        Number: userMobile,
+                                        UserName: userName.trim(),
+                                        Cellular: userMobile.trim(),
+                                        EmailID: userMailId.trim(),
+                                        UserDOB: userDob.trim(),
+                                        AddressList: addressList
+                                    },
+                                    navigation: navigation
+                                })
+
+                            }
+                        }}
+                        style={{ ...styles.loginBtn, backgroundColor: color.mainColor }}>
+                        <Text style={{ ...styles.loginBtnText, color: color.secondaryColor }}>NEXT</Text>
+                    </TouchableHighlight>
+
+                    <View style={{ height: height * 0.1 / 2 }} />
+
 
                 </View>
-
-                {Platform.OS === 'ios' ?
-                        <TouchableHighlight
-                            underlayColor={'#ddd'}
-                            style={{
-                                position: 'absolute',
-                                right: 20,
-                                top: 60,
-                            }}
-                            onPress={() => {
-                                AsyncStorage.setItem('is_login_skipped','yes');
-                                navigation.replace('Drawer')
-                            }}
-                        >
-                            <Text style={{
-                                color:color.secondaryColor,
-                                fontSize: height * 0.02
-                            }}>SKIP</Text>
-                        </TouchableHighlight> : <></>
-                    }
-
-                {/* loader */}
-                {showLoader ?
-                    <Pressable
-                        //onPress={()=>setLoader(false)}
+                {/* circular */}
+                <View style={{ ...styles.circleAvatar, backgroundColor: color.mainColor }}>
+                    {/* <Icon name="user" size={45} color={color.secondaryColor} style={styles.iconStyle} /> */}
+                    <Image
+                        source={require('../../assets/images/pjlogocrop.png')}
+                        resizeMode='contain'
+                        //resizeMethod='resize'
                         style={{
-                            // flex: 1,
-                            // justifyContent: 'center',
-                            alignItems: 'center',
-                            backgroundColor: 'rgba(9,9,9,0.5)',
-                            position: 'absolute',
-                            left: 0,
-                            right: 0,
-                            top: 0,
-                            bottom: 0
-                        }}>
+                            height: 80, width: 80,
+                            borderRadius: 160,
+                            backgroundColor: color.mainColor,
+                        }}
+                    />
+                </View>
 
-                        <View style={{
-                            height: height * 0.1,
-                            backgroundColor: 'white',
-                            width: width * 0.7,
-                            borderRadius: 10,
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            paddingLeft: 10,
-                            paddingRight: 10,
-                            marginTop:height*0.5
-                        }}>
+                {/* footer */}
+                {/* <FooterText /> */}
 
-                            <ActivityIndicator
-                                size={45}
-                                color="rgba(167, 43, 99, 1)"
-                            />
+                <Image source={require('../../assets/images/Layer.png')}
+                    style={{ height: height * 0.17, width: width * 0.45 }} />
+                {/* date picker */}
+                {
+                    showDatePick ?
+                        <DatePicker
+                            open={showDatePick}
+                            confirmText="SELECT"
+                            title="Select DOB"
+                            modal
+                            date={date}
+                            mode="date"
+                            onConfirm={(date) => {
+                                const curr = new Date();
+                                if (date.getFullYear() > curr.getFullYear()) {
+                                    SnackBarUtil({
+                                        message: "Invalid Date Of Birth!",
+                                        isError: true
+                                    })
+                                } else {
+                                    // var formated = Moment(date).format("YYYY-MM-DD").toString()
+                                    var formated = Moment(date).format("YYYY-MM-DD")
+                                    setUserDob(formated)
+                                    setShowDatePick(false)
+                                }
+                            }}
+                            onCancel={() => {
+                                setShowDatePick(false)
+                            }}
+                        /> : null
+                }
 
-                            <Text
-                                style={{
-                                    color: 'black',
-                                    fontSize: height * 0.022 / fontScaleOfDevice,
-                                    fontFamily: FONTS.FONT_SEMIMODAL,
-                                    marginLeft: 10
-                                }}>Please Wait...</Text>
+            </View>
 
-                        </View>
+            {Platform.OS === 'ios' ?
+                <TouchableHighlight
+                    underlayColor={'#ddd'}
+                    style={{
+                        position: 'absolute',
+                        right: 20,
+                        top: 60,
+                    }}
+                    onPress={() => {
+                        AsyncStorage.setItem('is_login_skipped', 'yes');
+                        navigation.replace('Drawer')
+                    }}
+                >
+                    <Text style={{
+                        color: color.secondaryColor,
+                        fontSize: height * 0.02
+                    }}>SKIP</Text>
+                </TouchableHighlight> : <></>
+            }
 
-                    </Pressable> :
-                    <></>}
-       
+            {/* loader */}
+            {showLoader ?
+                <Pressable
+                    //onPress={()=>setLoader(false)}
+                    style={{
+                        // flex: 1,
+                        // justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: 'rgba(9,9,9,0.5)',
+                        position: 'absolute',
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        bottom: 0
+                    }}>
+
+                    <View style={{
+                        height: height * 0.1,
+                        backgroundColor: 'white',
+                        width: width * 0.7,
+                        borderRadius: 10,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        paddingLeft: 10,
+                        paddingRight: 10,
+                        marginTop: height * 0.5
+                    }}>
+
+                        <ActivityIndicator
+                            size={45}
+                            color="rgba(167, 43, 99, 1)"
+                        />
+
+                        <Text
+                            style={{
+                                color: 'black',
+                                fontSize: height * 0.022 / fontScaleOfDevice,
+                                fontFamily: FONTS.FONT_SEMIMODAL,
+                                marginLeft: 10
+                            }}>Please Wait...</Text>
+
+                    </View>
+
+                </Pressable> :
+                <></>}
+
 
 
         </KeyboardWraper>

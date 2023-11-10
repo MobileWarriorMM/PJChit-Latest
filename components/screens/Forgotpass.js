@@ -91,138 +91,138 @@ export default function Forgotpass({ navigation, route }) {
 
     return (
         <KeyboardWraper>
-            <SafeAreaView>
-                <View style={{
-                    backgroundColor: color.mainColor, height: height
-                }}>
-                    <Image source={require('../../assets/images/Layer.png')}
-                        style={{ height: height * 0.17, width: width * 0.45 }} />
+            {/* <SafeAreaView> */}
+            <View style={{
+                backgroundColor: color.mainColor, height: height
+            }}>
+                <Image source={require('../../assets/images/Layer.png')}
+                    style={{ height: height * 0.17, width: width * 0.45 }} />
 
-                    {/* Main view */}
-                    <View style={styles.column}>
-                        {/* circular */}
-                        <View style={{ ...styles.circleAvatar }}>
-                            <Image
-                                source={require('../../assets/images/pjlogocrop.png')}
-                                resizeMode='contain'
-                                //resizeMethod='resize'
-                                style={{
-                                    height: 80, width: 80,
-                                    borderRadius: 160,
-                                    backgroundColor: color.mainColor,
-                                }}
-                            />
-                            {/* <Icon name="user" size={45} color={color.secondaryColor} style={styles.iconStyle} /> */}
-                            {/* <UserIcon height={80} width={80}/> */}
+                {/* Main view */}
+                <View style={styles.column}>
+                    {/* circular */}
+                    <View style={{ ...styles.circleAvatar }}>
+                        <Image
+                            source={require('../../assets/images/pjlogocrop.png')}
+                            resizeMode='contain'
+                            //resizeMethod='resize'
+                            style={{
+                                height: 80, width: 80,
+                                borderRadius: 160,
+                                backgroundColor: color.mainColor,
+                            }}
+                        />
+                        {/* <Icon name="user" size={45} color={color.secondaryColor} style={styles.iconStyle} /> */}
+                        {/* <UserIcon height={80} width={80}/> */}
+                    </View>
+
+
+
+                    <View style={{ justifyContent: 'space-between', height: height * 0.75 }}>
+                        <View>
+                            <Text style={{
+                                color: COLORS.DARK_BLUE,
+                                fontSize: height * 0.03 / fontScaleOfDevice,
+                                fontFamily: FONTS.FONT_BOLD,
+                                marginTop: 60,
+                                alignSelf: 'center'
+                            }}>{type === 'existUser' ? 'Exists user login' : 'Forgot Password'}</Text>
+
+                            <Text style={{
+                                fontFamily: FONTS.FONT_REGULAR,
+                                color: COLORS.DARK_BLUE,
+                                textAlign: 'center',
+                                paddingTop: 10,
+                                fontSize: height * 0.02 / fontScaleOfDevice,
+                                width: width * 0.7,
+                                alignSelf: 'center'
+                            }}>
+                                Please enter your Mobile Number
+                                to Send a verification code
+                            </Text>
+
+                        </View>
+                        <View style={{
+                            backgroundColor: '#f2f2f2', height: 125, width: 125, borderRadius: 250,
+                            alignSelf: 'center', justifyContent: 'center', marginBottom: 25
+                        }}>
+                            <ImageIcon name="ios-images-outline" color={'black'} size={60} style={{ alignSelf: 'center' }} />
                         </View>
 
-
-
-                        <View style={{ justifyContent: 'space-between', height: height * 0.75 }}>
-                            <View>
-                                <Text style={{
-                                    color: COLORS.DARK_BLUE,
-                                    fontSize: height * 0.03 / fontScaleOfDevice,
-                                    fontFamily: FONTS.FONT_BOLD,
-                                    marginTop: 60,
-                                    alignSelf: 'center'
-                                }}>{type === 'existUser' ? 'Exists user login' : 'Forgot Password'}</Text>
-
-                                <Text style={{
-                                    fontFamily: FONTS.FONT_REGULAR,
-                                    color: COLORS.DARK_BLUE,
-                                    textAlign: 'center',
-                                    paddingTop: 10,
-                                    fontSize: height * 0.02 / fontScaleOfDevice,
-                                    width: width * 0.7,
-                                    alignSelf: 'center'
-                                }}>
-                                    Please enter your Mobile Number
-                                    to Send a verification code
-                                </Text>
-
-                            </View>
-                            <View style={{
-                                backgroundColor: '#f2f2f2', height: 125, width: 125, borderRadius: 250,
-                                alignSelf: 'center', justifyContent: 'center', marginBottom: 25
-                            }}>
-                                <ImageIcon name="ios-images-outline" color={'black'} size={60} style={{ alignSelf: 'center' }} />
-                            </View>
-
-                            <View>
-                                {/* mobile number */}
-                                <View style={{ ...styles.editTextBorder, marginTop: 20 }}>
-                                    <Text style={styles.placeHolderText}> Mobile No <Text
-                                        style={{ color: 'red', fontSize: height * 0.02 / fontScaleOfDevice }}> * </Text></Text>
-                                    <View style={styles.textRow}>
-                                        <MaterialIcon name="phone-message-outline" size={27} color="#bf7a08" style={{
-                                            marginLeft: 10, marginRight: 10
-                                        }} />
-                                        <TextInput
-                                            keyboardType="phone-pad"
-                                            numberOfLines={1}
-                                            value={userMobile}
-                                            maxLength={10}
-                                            onChangeText={(e) => {
-                                                // handleDetails(e)
-                                                setUserMobile(e)
-                                            }}
-                                            placeholderTextColor={"gray"}
-                                            placeholder="Enter mobile number"
-                                            style={{
-                                                flex: 1,
-                                                fontFamily: FONTS.FONT_REGULAR,
-                                                color: 'black',
-                                                fontSize: height * 0.02 / fontScaleOfDevice
-                                            }}
-                                        />
-                                    </View>
+                        <View>
+                            {/* mobile number */}
+                            <View style={{ ...styles.editTextBorder, marginTop: 20 }}>
+                                <Text style={styles.placeHolderText}> Mobile No <Text
+                                    style={{ color: 'red', fontSize: height * 0.02 / fontScaleOfDevice }}> * </Text></Text>
+                                <View style={styles.textRow}>
+                                    <MaterialIcon name="phone-message-outline" size={27} color="#bf7a08" style={{
+                                        marginLeft: 10, marginRight: 10
+                                    }} />
+                                    <TextInput
+                                        keyboardType="phone-pad"
+                                        numberOfLines={1}
+                                        value={userMobile}
+                                        maxLength={10}
+                                        onChangeText={(e) => {
+                                            // handleDetails(e)
+                                            setUserMobile(e)
+                                        }}
+                                        placeholderTextColor={"gray"}
+                                        placeholder="Enter mobile number"
+                                        style={{
+                                            flex: 1,
+                                            fontFamily: FONTS.FONT_REGULAR,
+                                            color: 'black',
+                                            fontSize: height * 0.02 / fontScaleOfDevice
+                                        }}
+                                    />
                                 </View>
                             </View>
+                        </View>
 
-                            <View>
+                        <View>
 
-                                {/* login btn */}
-                                <TouchableHighlight
-                                    underlayColor={"#ddd"}
-                                    onPress={async () => {
-                                        if (userMobile === "") {
-                                            SnackBarUtil({ message: 'Mobile Number Is Required!', isError: true })
+                            {/* login btn */}
+                            <TouchableHighlight
+                                underlayColor={"#ddd"}
+                                onPress={async () => {
+                                    if (userMobile === "") {
+                                        SnackBarUtil({ message: 'Mobile Number Is Required!', isError: true })
+                                    }
+                                    else if (userMobile.length < 10) {
+                                        SnackBarUtil({ message: 'Enter Valid Mobile Number!', isError: true })
+                                    }
+                                    else {
+                                        if (type === 'existUser') {
+                                            dispatch({
+                                                type: actions.HANDLE_EXIST_VALID_PHONENUMBER,
+                                                payload: {
+                                                    number: userMobile,
+                                                    navigation: navigation,
+                                                    type: type
+                                                }
+                                            })
+                                        } else {
+                                            dispatch({
+                                                type: actions.HANDLE_VALID_PHONENUMBER,
+                                                payload: {
+                                                    number: userMobile,
+                                                    navigation: navigation,
+                                                    type: type
+                                                }
+                                            })
                                         }
-                                        else if (userMobile.length < 10) {
-                                            SnackBarUtil({ message: 'Enter Valid Mobile Number!', isError: true })
-                                        }
-                                        else {
-                                            if (type === 'existUser') {
-                                                dispatch({
-                                                    type: actions.HANDLE_EXIST_VALID_PHONENUMBER,
-                                                    payload: {
-                                                        number: userMobile,
-                                                        navigation: navigation,
-                                                        type: type
-                                                    }
-                                                })
-                                            } else {
-                                                dispatch({
-                                                    type: actions.HANDLE_VALID_PHONENUMBER,
-                                                    payload: {
-                                                        number: userMobile,
-                                                        navigation: navigation,
-                                                        type: type
-                                                    }
-                                                })
-                                            }
-                                        }
-                                    }}
-                                    style={{ ...styles.loginBtn, backgroundColor: color.mainColor }}>
-                                    <Text style={{ ...styles.loginBtnText, color: color.secondaryColor }}>NEXT</Text>
-                                </TouchableHighlight>
-                            </View>
+                                    }
+                                }}
+                                style={{ ...styles.loginBtn, backgroundColor: color.mainColor }}>
+                                <Text style={{ ...styles.loginBtnText, color: color.secondaryColor }}>NEXT</Text>
+                            </TouchableHighlight>
                         </View>
                     </View>
-                    <FooterText />
                 </View>
-            </SafeAreaView>
+                <FooterText />
+            </View>
+            {/* </SafeAreaView> */}
         </KeyboardWraper>
     );
 

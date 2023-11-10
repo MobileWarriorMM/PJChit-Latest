@@ -4,10 +4,11 @@ const initialState = {
   logged_in: 'false',
   forgetPasswordDetails: { Cellular: "", Password: "", Type: "" },
   loginInputDetails: { Cellular: "", Password: "" },
-  userRegisterDetails: { UserName: "", Cellular: "", EmailID: "", UserDOB: "",AddressList:"" },
+  userRegisterDetails: { UserName: "", Cellular: "", EmailID: "", UserDOB: "", AddressList: "" },
   Authentication: false,
   logDetails: {},
-  userOTP:''
+  userOTP: '',
+  loginLoading: false
 };
 
 const AuthReducer = (state = initialState, action) => {
@@ -43,7 +44,7 @@ const AuthReducer = (state = initialState, action) => {
           Cellular: action.payload.Cellular,
           EmailID: action.payload.EmailID,
           UserDOB: action.payload.UserDOB,
-          AddressList:action.payload.AddressList
+          AddressList: action.payload.AddressList
         }
       }
     case actions.SET_LOGIN:
@@ -56,12 +57,16 @@ const AuthReducer = (state = initialState, action) => {
         ...state,
         logDetails: action.payload
       }
-      case actions.HANDLE_OTP:
-        return {
-          ...state,
-          userOTP: action.payload
-        }
-
+    case actions.HANDLE_OTP:
+      return {
+        ...state,
+        userOTP: action.payload
+      }
+    case actions.LOGIN_LOAD:
+      return {
+        ...state,
+        loginLoading: action.payload
+      }
     default:
       return state;
   }

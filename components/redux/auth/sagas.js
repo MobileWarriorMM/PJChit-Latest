@@ -226,7 +226,13 @@ const getForgetPassword = function* (data) {
 
 const getLogin = function* (data) {
     //TestPing("https://www.google.com")
-    yield put({ type: LoaderActions.LOADER_VISIBLE, payload: { visible: true } });
+
+    if(Platform.OS === 'ios') {
+        yield put({ type: actions.LOGIN_LOAD, payload: true });
+    }else {
+        yield put({ type: LoaderActions.LOADER_VISIBLE, payload: { visible: true } });
+    }
+
     const { payload } = data;
     //TestPing("https://www.google.com")
     try {
@@ -274,6 +280,13 @@ const getLogin = function* (data) {
         return SnackBarUtil({ message: "Some Error Accured", isError: true })
     }
     // yield put({ type: LoaderActions.LOADER_VISIBLE, payload: { visible: false } });
+
+    if(Platform.OS === 'ios') {
+        yield put({ type: actions.LOGIN_LOAD, payload: false });
+    }else {
+        yield put({ type: LoaderActions.LOADER_VISIBLE, payload: { visible: false } });
+    }
+
 };
 
 

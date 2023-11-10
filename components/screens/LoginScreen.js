@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Dimensions, TextInput, TouchableHighlight, Image, Platform } from "react-native";
+import { View, Text, StyleSheet, Dimensions, TextInput, TouchableHighlight, Image, Platform, ActivityIndicator } from "react-native";
 import MaterialIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import TouchID from "react-native-touch-id";
 import KeyboardWraper from "../common_utils/KeyboardWraper";
@@ -21,7 +21,7 @@ var height = Dimensions.get('window').height;
 var width = Dimensions.get('window').width;
 
 export default function LoginScreen({ navigation }) {
-    const { loginInputDetails } = useSelector((state) => state.AuthReducer);
+    const { loginInputDetails, loginLoading } = useSelector((state) => state.AuthReducer);
     const { color } = useSelector((state) => state.ColorThemeReducer);
 
     var secColor = color.secondaryColor;
@@ -248,59 +248,113 @@ export default function LoginScreen({ navigation }) {
 
     return (
         <KeyboardWraper>
-            <SafeAreaView>
-                <View style={{ backgroundColor: color.mainColor, height: height }}>
-                    <Image source={require('../../assets/images/Layer.png')} style={{ height: height * 0.17, width: width * 0.45 }} />
+            {/* <SafeAreaView> */}
+            <View style={{ backgroundColor: color.mainColor, height: height }}>
+                <Image source={require('../../assets/images/Layer.png')} style={{ height: height * 0.17, width: width * 0.45 }} />
 
-                    <View style={styles.mainContainer}>
+                <View style={styles.mainContainer}>
 
-                        {/* Main view */}
-                        <View style={styles.column}>
+                    {/* Main view */}
+                    <View style={styles.column}>
 
-                            <Text style={{
-                                color: COLORS.DARK_BLUE,
-                                fontSize: height * 0.03 / fontScaleOfDevice,
-                                marginTop: 70,
-                                alignSelf: 'center',
-                                fontFamily: FONTS.FONT_BOLD
-                            }}>Login</Text>
+                        <Text style={{
+                            color: COLORS.DARK_BLUE,
+                            fontSize: height * 0.03 / fontScaleOfDevice,
+                            marginTop: 70,
+                            alignSelf: 'center',
+                            fontFamily: FONTS.FONT_BOLD
+                        }}>Login</Text>
 
-                            <View
-                                style={{
-                                    height: 40
-                                }}
-                            />
+                        <View
+                            style={{
+                                height: 40
+                            }}
+                        />
 
-                            {/* mobile number */}
-                            <View style={errors.Cellular ? styles.errorTextBorder : styles.editTextBorder}>
-                                <Text style={styles.placeHolderText}> Mobile No <Text
+                        {/* mobile number */}
+                        <View style={errors.Cellular ? styles.errorTextBorder : styles.editTextBorder}>
+                            <Text style={styles.placeHolderText}> Mobile No <Text
+                                style={{ color: 'red', fontSize: height * 0.019 / fontScaleOfDevice, }}> * </Text></Text>
+                            <View style={styles.textRow}>
+                                <MaterialIcon name="account-circle-outline" size={30} color="#c4903b" style={{
+                                    marginLeft: 10, marginRight: 10
+                                }} />
+                                <Controller
+                                    control={control}
+                                    name="Cellular"
+                                    rules={{
+                                        required: {
+                                            value: false,
+                                            message: ' Enter Valid Mobile Number!'
+                                        }
+                                    }}
+                                    render={({ field: { onChange, value } }) => (
+                                        <TextInput
+                                            keyboardType="phone-pad"
+                                            // numberOfLines={1}
+                                            {...register("Cellular")}
+                                            maxLength={10}
+                                            name="Cellular"
+                                            value={value}
+                                            onChangeText={value => {
+                                                onChange(value)
+                                                setNum(num = value)
+                                            }}
+                                            placeholder="Enter mobile number"
+                                            placeholderTextColor={"gray"}
+                                            style={{
+                                                flex: 1,
+                                                color: 'black',
+                                                fontFamily: FONTS.FONT_REGULAR,
+                                                fontSize: height * 0.02 / fontScaleOfDevice
+                                            }}
+                                        />
+                                    )}
+                                />
+                            </View>
+                        </View>
+                        {errors.Cellular ? <Text style={{
+                            color: 'red', fontSize: 11,
+                            marginLeft: 20, marginTop: 4, fontFamily: FONTS.FONT_REGULAR
+                        }}>
+                            {errors?.Cellular?.message}
+                        </Text> : null}
+
+                        <View
+                            style={{
+                                height: 30
+                            }}
+                        />
+
+                        {/* password */}
+                        <View style={styles.passwordRow}>
+                            <View style={[errors.Password ? styles.errorTextBorder : styles.editTextBorder, { flexGrow: 1 }]}>
+                                <Text style={styles.placeHolderText}> Password <Text
                                     style={{ color: 'red', fontSize: height * 0.019 / fontScaleOfDevice, }}> * </Text></Text>
                                 <View style={styles.textRow}>
-                                    <MaterialIcon name="account-circle-outline" size={30} color="#c4903b" style={{
+                                    <MaterialIcon name="lock-outline" size={28} color="#c4903b" style={{
                                         marginLeft: 10, marginRight: 10
                                     }} />
                                     <Controller
                                         control={control}
-                                        name="Cellular"
+                                        name="Password"
                                         rules={{
                                             required: {
-                                                value: false,
-                                                message: ' Enter Valid Mobile Number!'
-                                            }
+                                                value: true,
+                                                message: 'Password Not Be Empty!'
+                                            },
+
                                         }}
                                         render={({ field: { onChange, value } }) => (
                                             <TextInput
-                                                keyboardType="phone-pad"
-                                                // numberOfLines={1}
-                                                {...register("Cellular")}
-                                                maxLength={10}
-                                                name="Cellular"
+                                                numberOfLines={1}
+                                                {...register("Password")}
+                                                placeholder="Enter your password"
+                                                secureTextEntry={passwordView}
+                                                passwordRules="*"
+                                                name="Password"
                                                 value={value}
-                                                onChangeText={value => {
-                                                    onChange(value)
-                                                    setNum(num = value)
-                                                }}
-                                                placeholder="Enter mobile number"
+                                                onChangeText={value => onChange(value)}
                                                 placeholderTextColor={"gray"}
                                                 style={{
                                                     flex: 1,
@@ -311,79 +365,25 @@ export default function LoginScreen({ navigation }) {
                                             />
                                         )}
                                     />
+
+                                    {
+                                        (passwordView) ?
+                                            <EyeIcon onPress={() => setPasswordView(!passwordView)} name='eye-with-line' style={{ marginRight: 15 }} color={'grey'} size={25} />
+                                            :
+                                            <EyeIcon onPress={() => setPasswordView(!passwordView)} name='eye' style={{ marginRight: 15 }} color={COLORS.BACKGROUND_O} size={25} />
+
+                                    }
+
                                 </View>
                             </View>
-                            {errors.Cellular ? <Text style={{
-                                color: 'red', fontSize: 11,
-                                marginLeft: 20, marginTop: 4, fontFamily: FONTS.FONT_REGULAR
-                            }}>
-                                {errors?.Cellular?.message}
-                            </Text> : null}
 
-                            <View
-                                style={{
-                                    height: 30
-                                }}
-                            />
-
-                            {/* password */}
-                            <View style={styles.passwordRow}>
-                                <View style={[errors.Password ? styles.errorTextBorder : styles.editTextBorder, { flexGrow: 1 }]}>
-                                    <Text style={styles.placeHolderText}> Password <Text
-                                        style={{ color: 'red', fontSize: height * 0.019 / fontScaleOfDevice, }}> * </Text></Text>
-                                    <View style={styles.textRow}>
-                                        <MaterialIcon name="lock-outline" size={28} color="#c4903b" style={{
-                                            marginLeft: 10, marginRight: 10
-                                        }} />
-                                        <Controller
-                                            control={control}
-                                            name="Password"
-                                            rules={{
-                                                required: {
-                                                    value: true,
-                                                    message: 'Password Not Be Empty!'
-                                                },
-
-                                            }}
-                                            render={({ field: { onChange, value } }) => (
-                                                <TextInput
-                                                    numberOfLines={1}
-                                                    {...register("Password")}
-                                                    placeholder="Enter your password"
-                                                    secureTextEntry={passwordView}
-                                                    passwordRules="*"
-                                                    name="Password"
-                                                    value={value}
-                                                    onChangeText={value => onChange(value)}
-                                                    placeholderTextColor={"gray"}
-                                                    style={{
-                                                        flex: 1,
-                                                        color: 'black',
-                                                        fontFamily: FONTS.FONT_REGULAR,
-                                                        fontSize: height * 0.02 / fontScaleOfDevice
-                                                    }}
-                                                />
-                                            )}
-                                        />
-
-                                        {
-                                            (passwordView) ?
-                                                <EyeIcon onPress={() => setPasswordView(!passwordView)} name='eye-with-line' style={{ marginRight: 15 }} color={'grey'} size={25} />
-                                                :
-                                                <EyeIcon onPress={() => setPasswordView(!passwordView)} name='eye' style={{ marginRight: 15 }} color={COLORS.BACKGROUND_O} size={25} />
-
-                                        }
-
-                                    </View>
-                                </View>
-
-                                {/* <Text style={{
+                            {/* <Text style={{
                                     fontSize: 17,
                                     color: 'black',
                                     marginTop: 28
                                 }}>OR</Text> */}
 
-                                {/* <TouchableHighlight
+                            {/* <TouchableHighlight
                                     onPress={() => handleTouchAuth()}
                                     underlayColor="transparent"
                                 >
@@ -418,50 +418,50 @@ export default function LoginScreen({ navigation }) {
                                     </View>
                                 </TouchableHighlight> */}
 
-                            </View>
-                            {errors.Password ? <Text style={{
-                                color: 'red', fontSize: 11,
-                                marginLeft: 20, marginTop: 4, fontFamily: FONTS.FONT_REGULAR
-                            }}>
-                                {errors.Password.message}
-                            </Text> : null}
+                        </View>
+                        {errors.Password ? <Text style={{
+                            color: 'red', fontSize: 11,
+                            marginLeft: 20, marginTop: 4, fontFamily: FONTS.FONT_REGULAR
+                        }}>
+                            {errors.Password.message}
+                        </Text> : null}
 
-                            <View
-                                style={{
-                                    height: 20
-                                }}
-                            />
+                        <View
+                            style={{
+                                height: 20
+                            }}
+                        />
 
-                            {/* Touch id ui */}
-                            {
-                                logState === "login" ?
-                                    <TouchableHighlight
-                                        onPress={() => handleTouchAuth()}
-                                        underlayColor={'transparent'}
-                                    >
-                                        <View style={styles.touchIdRow}>
-                                            <MaterialIcon name="fingerprint" size={35} color="#1b2b51" style={{
-                                                marginLeft: 10, marginRight: 6,
-                                            }} />
-                                            <View style={{ flexDirection: 'column' }}>
-                                                <Text style={{
-                                                    fontSize: height * 0.021 / fontScaleOfDevice,
-                                                    color: "#1b2b51",
-                                                    fontFamily: FONTS.FONT_REGULAR
-                                                }}>
-                                                    Use Fingerprint ID
-                                                </Text>
-                                                <Text style={{ fontSize: height * 0.021 / fontScaleOfDevice, color: "#1b2b51", fontFamily: FONTS.FONT_REGULAR }}>
-                                                    Provides More Protection
-                                                </Text>
-                                            </View>
+                        {/* Touch id ui */}
+                        {
+                            logState === "login" ?
+                                <TouchableHighlight
+                                    onPress={() => handleTouchAuth()}
+                                    underlayColor={'transparent'}
+                                >
+                                    <View style={styles.touchIdRow}>
+                                        <MaterialIcon name="fingerprint" size={35} color="#1b2b51" style={{
+                                            marginLeft: 10, marginRight: 6,
+                                        }} />
+                                        <View style={{ flexDirection: 'column' }}>
+                                            <Text style={{
+                                                fontSize: height * 0.021 / fontScaleOfDevice,
+                                                color: "#1b2b51",
+                                                fontFamily: FONTS.FONT_REGULAR
+                                            }}>
+                                                Use Fingerprint ID
+                                            </Text>
+                                            <Text style={{ fontSize: height * 0.021 / fontScaleOfDevice, color: "#1b2b51", fontFamily: FONTS.FONT_REGULAR }}>
+                                                Provides More Protection
+                                            </Text>
                                         </View>
-                                    </TouchableHighlight> : <></>
-                            }
+                                    </View>
+                                </TouchableHighlight> : <></>
+                        }
 
-                            {/* forgot handler */}
-                            <View style={styles.forgotRow}>
-                                {/* <TouchableHighlight
+                        {/* forgot handler */}
+                        <View style={styles.forgotRow}>
+                            {/* <TouchableHighlight
                                     underlayColor={"transparent"}
                                     onPress={() => handleRememberMe()}
                                 >
@@ -482,140 +482,145 @@ export default function LoginScreen({ navigation }) {
                                         </Text>
                                     </View>
                                 </TouchableHighlight> */}
-                            </View>
+                        </View>
 
-                            {/* login btn */}
+                        {/* login btn */}
+                        <TouchableHighlight
+                            underlayColor={"#ddd"}
+                            onPress={
+                                handleSubmit(Login)
+                                //()=>navigation.navigate('PasswordRegister')
+                            }
+                            style={{ ...styles.loginBtn, backgroundColor: color.mainColor }}>
+                            {
+                                loginLoading ?
+                                    <ActivityIndicator color={'#ddd'} /> :
+                                    <Text style={{ ...styles.loginBtnText, color: secColor }}>LOGIN</Text>
+                            }
+                            {/* <Text style={{ ...styles.loginBtnText, color: secColor }}>LOGIN</Text> */}
+                        </TouchableHighlight>
+
+
+
+                        {/* new user */}
+                        <View style={styles.newRegRow}>
+                            <Text
+                                style={{
+                                    color: "black",
+                                    fontFamily: FONTS.FONT_REGULAR,
+                                    fontSize: height * 0.018 / fontScaleOfDevice,
+                                }}
+                            >New User ?  </Text>
                             <TouchableHighlight
-                                underlayColor={"#ddd"}
-                                onPress={
-                                    handleSubmit(Login)
-                                    //()=>navigation.navigate('PasswordRegister')
-                                }
-                                style={{ ...styles.loginBtn, backgroundColor: color.mainColor }}>
-                                <Text style={{ ...styles.loginBtnText, color: secColor }}>LOGIN</Text>
+                                underlayColor={"transparent"}
+                                onPress={() => handleNavigation()}
+                            >
+                                <Text
+                                    style={{
+                                        color: "blue",
+                                        textDecorationLine: 'underline',
+                                        fontFamily: FONTS.FONT_REGULAR,
+                                        fontSize: height * 0.018 / fontScaleOfDevice,
+                                    }}
+                                >Register Here</Text>
                             </TouchableHighlight>
+                        </View>
 
-
-
-                            {/* new user */}
-                            <View style={styles.newRegRow}>
-                                <Text
-                                    style={{
-                                        color: "black",
-                                        fontFamily: FONTS.FONT_REGULAR,
-                                        fontSize: height * 0.018 / fontScaleOfDevice,
-                                    }}
-                                >New User ?  </Text>
-                                <TouchableHighlight
-                                    underlayColor={"transparent"}
-                                    onPress={() => handleNavigation()}
-                                >
-                                    <Text
-                                        style={{
-                                            color: "blue",
-                                            textDecorationLine: 'underline',
-                                            fontFamily: FONTS.FONT_REGULAR,
-                                            fontSize: height * 0.018 / fontScaleOfDevice,
-                                        }}
-                                    >Register Here</Text>
-                                </TouchableHighlight>
-                            </View>
-
-                            {/* new user */}
-                            <View style={styles.newRegRow}>
-                                <Text
-                                    style={{
-                                        color: "black",
-                                        fontFamily: FONTS.FONT_REGULAR,
-                                        fontSize: height * 0.018 / fontScaleOfDevice,
-                                    }}
-                                >Existing User?  </Text>
-                                <TouchableHighlight
-                                    underlayColor={"transparent"}
-                                    onPress={() => {
-                                        navigation.navigate('forgotpass', { type: 'existUser' })
-                                        let defaultValues = { Password: "", Cellular: num };
-                                        reset({ ...defaultValues });
-                                    }}
-                                >
-                                    <Text
-                                        style={{
-                                            color: "blue",
-                                            textDecorationLine: 'underline',
-                                            fontFamily: FONTS.FONT_REGULAR,
-                                            fontSize: height * 0.018 / fontScaleOfDevice,
-                                        }}
-                                    >Continue</Text>
-                                </TouchableHighlight>
-                            </View>
-
+                        {/* new user */}
+                        <View style={styles.newRegRow}>
+                            <Text
+                                style={{
+                                    color: "black",
+                                    fontFamily: FONTS.FONT_REGULAR,
+                                    fontSize: height * 0.018 / fontScaleOfDevice,
+                                }}
+                            >Existing User?  </Text>
                             <TouchableHighlight
-                                underlayColor={'transparent'}
+                                underlayColor={"transparent"}
                                 onPress={() => {
-                                    navigation.navigate('forgotpass', { type: 'forgot' })
+                                    navigation.navigate('forgotpass', { type: 'existUser' })
                                     let defaultValues = { Password: "", Cellular: num };
                                     reset({ ...defaultValues });
                                 }}
-                                style={{
-                                    alignSelf: 'center',
-                                    marginTop: 10
-                                }}
                             >
-                                <Text style={{
-                                    fontSize: height * 0.017 / fontScaleOfDevice,
-                                    color: 'black',
-                                    //marginLeft: 8,
-                                    textDecorationLine: 'underline',
-                                    fontFamily: FONTS.FONT_REGULAR
-                                }}>
-                                    Forgot Password
-                                </Text>
+                                <Text
+                                    style={{
+                                        color: "blue",
+                                        textDecorationLine: 'underline',
+                                        fontFamily: FONTS.FONT_REGULAR,
+                                        fontSize: height * 0.018 / fontScaleOfDevice,
+                                    }}
+                                >Continue</Text>
                             </TouchableHighlight>
-
-
-                            <FooterText />
-
                         </View>
 
-                        {/* circular */}
-                        <View style={{ ...styles.circleAvatar, }}>
-                            <Image
-                                source={require('../../assets/images/pjlogocrop.png')}
-                                resizeMode='contain'
-                                //resizeMethod='resize'
-                                style={{
-                                    height: 80, width: 80,
-                                    borderRadius: 160,
-                                    backgroundColor: color.mainColor,
-                                }}
-                            />
-                            {/* <Icon name="user" size={45} color={color.secondaryColor} style={styles.iconStyle} /> */}
-                        </View>
-
-                    </View>
-
-                    {Platform.OS === 'ios' ?
                         <TouchableHighlight
-                            underlayColor={'#ddd'}
-                            style={{
-                                position: 'absolute',
-                                right: 20,
-                                top: 20,
-                            }}
+                            underlayColor={'transparent'}
                             onPress={() => {
-                                AsyncStorage.setItem('is_login_skipped','yes');
-                                navigation.replace('Drawer')
+                                navigation.navigate('forgotpass', { type: 'forgot' })
+                                let defaultValues = { Password: "", Cellular: num };
+                                reset({ ...defaultValues });
+                            }}
+                            style={{
+                                alignSelf: 'center',
+                                marginTop: 10
                             }}
                         >
                             <Text style={{
-                                color:color.secondaryColor,
-                                fontSize: height * 0.02
-                            }}>SKIP</Text>
-                        </TouchableHighlight> : <></>
-                    }
+                                fontSize: height * 0.017 / fontScaleOfDevice,
+                                color: 'black',
+                                //marginLeft: 8,
+                                textDecorationLine: 'underline',
+                                fontFamily: FONTS.FONT_REGULAR
+                            }}>
+                                Forgot Password
+                            </Text>
+                        </TouchableHighlight>
+
+
+                        <FooterText />
+
+                    </View>
+
+                    {/* circular */}
+                    <View style={{ ...styles.circleAvatar, }}>
+                        <Image
+                            source={require('../../assets/images/pjlogocrop.png')}
+                            resizeMode='contain'
+                            //resizeMethod='resize'
+                            style={{
+                                height: 80, width: 80,
+                                borderRadius: 160,
+                                backgroundColor: color.mainColor,
+                            }}
+                        />
+                        {/* <Icon name="user" size={45} color={color.secondaryColor} style={styles.iconStyle} /> */}
+                    </View>
 
                 </View>
-            </SafeAreaView>
+
+                {Platform.OS === 'ios' ?
+                    <TouchableHighlight
+                        underlayColor={'#ddd'}
+                        style={{
+                            position: 'absolute',
+                            right: 20,
+                            top: 40,
+                        }}
+                        onPress={() => {
+                            AsyncStorage.setItem('is_login_skipped', 'yes');
+                            navigation.replace('Drawer')
+                        }}
+                    >
+                        <Text style={{
+                            color: color.secondaryColor,
+                            fontSize: height * 0.02
+                        }}>SKIP</Text>
+                    </TouchableHighlight> : <></>
+                }
+
+            </View>
+            {/* </SafeAreaView> */}
         </KeyboardWraper>
     );
 

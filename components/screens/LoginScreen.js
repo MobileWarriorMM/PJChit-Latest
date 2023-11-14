@@ -577,9 +577,6 @@ export default function LoginScreen({ navigation }) {
                             </Text>
                         </TouchableHighlight>
 
-
-                        <FooterText />
-
                     </View>
 
                     {/* circular */}
@@ -605,7 +602,7 @@ export default function LoginScreen({ navigation }) {
                         style={{
                             position: 'absolute',
                             right: 20,
-                            top: 40,
+                            top: 70,
                         }}
                         onPress={() => {
                             AsyncStorage.setItem('is_login_skipped', 'yes');
@@ -618,6 +615,8 @@ export default function LoginScreen({ navigation }) {
                         }}>SKIP</Text>
                     </TouchableHighlight> : <></>
                 }
+
+                <FooterText />
 
             </View>
             {/* </SafeAreaView> */}

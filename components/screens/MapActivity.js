@@ -79,7 +79,7 @@ export default function MapActivity({ navigation }) {
             elevation: 10,
             position: 'absolute',
             alignSelf: 'center',
-            top: 0,
+            top: 25,
             right: -25
           }}
         >

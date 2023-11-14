@@ -741,6 +741,7 @@ export default function ProfileScreen({ navigation }) {
                                 }>
                                 <Text style={profileStyle.logout}>LOGOUT</Text>
                             </TouchableHighlight>}
+                            <View style={{height:0}} />
                     </View>
                     <View style={{ position: "absolute", flex: 1, bottom: 0, transform: [{ rotate: '360deg' }], zIndex: -5, alignSelf: "center", alignItems: "center" }}>
                         <View >

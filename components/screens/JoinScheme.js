@@ -31,6 +31,7 @@ import MatIcon from 'react-native-vector-icons/MaterialIcons'
 import TestPing from '../common_utils/pingTest'
 import { API_URL } from "../common_utils/constants";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFocusEffect } from "@react-navigation/native";
 
 var height = Dimensions.get('window').height
 var width = Dimensions.get('window').width
@@ -174,6 +175,12 @@ export default function JoinScheme({ navigation }) {
             dispatch({ type: Loaderactions.LOADER_VISIBLE, payload: { visible: false } })
         }
     }
+
+    // useFocusEffect(
+    //     useCallback(()=>{
+    //         alert('alert')
+    //     },[])
+    // );
 
     useEffect(() => {
         //get active schemes

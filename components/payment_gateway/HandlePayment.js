@@ -3,6 +3,16 @@ import {
   CFErrorResponse,
   CFPaymentGatewayService,
 } from 'react-native-cashfree-pg-sdk';
+
+import {
+  CFDropCheckoutPayment,
+  CFEnvironment,
+  CFPaymentComponentBuilder,
+  CFPaymentModes,
+  CFSession,
+  CFThemeBuilder,
+} from 'cashfree-pg-api-contract';
+
 import { View, Text, Dimensions, ActivityIndicator, Image, StyleSheet, Alert, TouchableHighlight, BackHandler, Platform } from "react-native";
 import FONTS from "../common_utils/fonts";
 import { useSelector, useDispatch } from "react-redux";
@@ -32,6 +42,8 @@ export default function HandlePayment({ navigation, route }) {
   var [myOrderId , setMyOrderId] = useState("")
 
   const dispatch = useDispatch()
+
+  console.log(UserData);
 
   const addChitToDb = async (status, orderId) => {
     // const db = await getDbConnection();
@@ -406,6 +418,8 @@ export default function HandlePayment({ navigation, route }) {
     }
 
 
+    //'order_id': `ordidpj_${generateUUID(8)}`,
+
     const item = {
       'order_amount': `${amount}`,
       'order_id': `ordidpj_${generateUUID(8)}`,
@@ -438,6 +452,9 @@ export default function HandlePayment({ navigation, route }) {
 
       if (response.status === 200) {
         const resData = await response.json();
+
+        console.log(resData);
+
         //navigation.goBack();
         if(resData?.payment_session_id === undefined) {
           navigation.goBack();
@@ -472,7 +489,42 @@ export default function HandlePayment({ navigation, route }) {
         "orderID": orderId,
         "environment": `${UserData.payment_Environment}`
       };
-      CFPaymentGatewayService.doWebPayment(JSON.stringify(session));
+
+      if(Platform.OS === 'ios') {
+
+        const session = new CFSession(
+          orderToken,
+          orderId,
+          UserData?.payment_Environment === "PRODUCTION"?CFEnvironment.PRODUCTION:CFEnvironment.SANDBOX
+        );
+        const paymentModes = new CFPaymentComponentBuilder()
+          .add(CFPaymentModes.CARD)
+          .add(CFPaymentModes.UPI)
+          .add(CFPaymentModes.NB)
+          .add(CFPaymentModes.WALLET)
+          .add(CFPaymentModes.PAY_LATER)
+          .build();
+        const theme = new CFThemeBuilder()
+          .setNavigationBarBackgroundColor('#E64A19')
+          .setNavigationBarTextColor('#FFFFFF')
+          .setButtonBackgroundColor('#FFC107')
+          .setButtonTextColor('#FFFFFF')
+          .setPrimaryTextColor('#212121')
+          .setSecondaryTextColor('#757575')
+          .build();
+        const dropPayment = new CFDropCheckoutPayment(
+          session,
+          paymentModes,
+          theme
+        );
+
+        CFPaymentGatewayService.doPayment(dropPayment);
+
+      }else {
+        CFPaymentGatewayService.doWebPayment(JSON.stringify(session));
+      }
+
+      //CFPaymentGatewayService.doPayment(JSON.stringify(session))
     } catch (e) {
       SnackBarUtil({ message: 'Error Accurred', isError: true })
     }
